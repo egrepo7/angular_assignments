@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <script>
+  var myApp = angular.module('myApp', []);
+  myApp.controller('foodController', function ($scope) {
+    $scope.food = [
+      {name: 'Spaghetti'},
+      {name: 'Fries'},
+      {name: 'Pizza'},
+      {name: 'BBQ'},
+      {name: 'Chicken'},
+      {name: 'Cheeseburger'}
+    ];
+    $scope.addFood = function() {
+      $scope.food.push($scope.newFood);
+      $scope.newFood = {};
+    }
+  });
+  </script>
+</head>
+<body ng-app='myApp'>
+  <div ng-controller='foodController'>
+    <form>
+      <p>
+        Add Favorite Food: <input type="text" ng-model="newFood.name">
+        <input type="submit" value="Add" ng-click="addFood()">
+      </p>
+      <p>
+        Currently typing: <span ng-bind="newFood.name"></span>
+      </p>
+    </form>
+    <p>
+      <input type="text" ng-model='filter_name' placeholder="Filter Food">
+    </p>
+    <ul>
+      <li ng-repeat="food in food | filter: filter_name | orderBy:'name'">
+        {{ food.name }}
+      </li>
+    </ul>
+    <ul>
+      <li ng-repeat="food in food">
+        <h3 ng-bind="food.name"></h3>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
