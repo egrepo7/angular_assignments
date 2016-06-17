@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+  <script>
+  var myApp = angular.module('myApp', ['ngRoute']);
+  myApp.config(function($routeProvider){
+    $routeProvider
+    .when('/', {
+      template.Url: 'client/index.html'
+    })
+    .when('/customize',{
+      templateUrl: 'partials/customizeUsers.html'
+    })
+    .when('/list',{
+      template.Url: 'partials/userList.html'
+    })
+    .otherwise({
+      redirectTo: '/'
+    });
+  });
+  myApp.controller('peopleController', function ($scope) {
+    $scope.people = [
+      {first_name: 'Yukihiro', last_name: 'Matsumoto' , language: 'Ruby' },
+      {first_name: 'Ryan', last_name: 'Dahl' , language: 'Javascript' },
+      {first_name: 'Brendan', last_name: 'Eich' , language: 'Javascript' }
+    ];
+    $scope.addPeople = function() {
+      $scope.people.push($scope.newPeople);
+      $scope.newPeople = {};
+    }
+    $scope.removePeople = function($index) {
+      $scope.people.splice($index, 1);
+    }
+  });
+  </script>
+</head>
+<body>
+  <div>
+    <a href="#/customize">Customize Users</a> | <a href="#/list">User List</a>
+  </div>
+</body>
+</html>
