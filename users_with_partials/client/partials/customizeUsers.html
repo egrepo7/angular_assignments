@@ -1,17 +1,17 @@
-<div ng-controller='peopleController'>
+<div ng-controller='customizeUsersController'>
   <fieldset>
     <legend>
       Users Controller
     </legend>
     <p>
-      First Name: <input type="text" ng-model='newPeople.first_name'>
+      First Name: <input type="text" ng-model='newUser.first_name'>
     </p>
     <p>
-      Last Name: <input type="text" ng-model='newPeople.last_name'>
+      Last Name: <input type="text" ng-model='newUser.last_name'>
     </p>
     <p>
-      Favorite language: <input type="text" ng-model='newPeople.language'>
-      <input type="submit" value="Create User" ng-click='addPeople()'>
+      Favorite language: <input type="text" ng-model='newUser.language'>
+      <input type="submit" value="Create User" ng-click='addUser()'>
     </p>
     <table>
       <tr>
@@ -20,18 +20,18 @@
         <th>Fav Language</th>
         <th>Actions</th>
       </tr>
-      <tr ng-repeat="person in people">
+      <tr ng-repeat="user in users">
         <td>
-          {{ person.first_name }}
+          {{ user.first_name }}
         </td>
         <td>
-          {{ person.last_name }}
+          {{ user.last_name }}
         </td>
         <td>
-          {{ person.language }}
+          {{ user.language }}
         </td>
         <td>
-          <button ng-click='removePeople($index)'>Delete</button>
+          <button ng-click='removeUser($index)'>Delete</button>
         </td>
 
       </tr>
